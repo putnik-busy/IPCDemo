@@ -1,0 +1,21 @@
+<manifest
+    package="com.demo.ipc"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name">
+
+        <service
+            android:name=".BookService"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.demo.ipc"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>
