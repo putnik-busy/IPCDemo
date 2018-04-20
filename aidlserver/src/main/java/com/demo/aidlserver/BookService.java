@@ -42,7 +42,6 @@ public class BookService extends Service {
 
         @Override
         public List<Book> loadBooks() throws RemoteException {
-            SystemClock.sleep(5000);
             return generateBooks();
         }
 
