@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/IPCDemo.iml" filepath="$PROJECT_DIR$/IPCDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/aidlclient/aidlclient.iml" filepath="$PROJECT_DIR$/aidlclient/aidlclient.iml" />
       <module fileurl="file://$PROJECT_DIR$/aidlserver/aidlserver.iml" filepath="$PROJECT_DIR$/aidlserver/aidlserver.iml" />
-      <module fileurl="file://$PROJECT_DIR$/aidlclient/app.iml" filepath="$PROJECT_DIR$/aidlclient/app.iml" />
     </modules>
   </component>
 </project>

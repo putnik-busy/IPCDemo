@@ -1,5 +1,5 @@
-<manifest package="com.demo.aidlserver"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.demo.aidlserver">
 
     <application
         android:allowBackup="true"
@@ -17,7 +17,15 @@
         </activity>
 
         <service
-            android:name=".BookService"
+            android:name=".SyncBookService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.demo.aidlserver"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".AsyncBookService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.demo.aidlserver"/>

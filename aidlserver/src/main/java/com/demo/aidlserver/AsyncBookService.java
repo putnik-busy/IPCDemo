@@ -7,8 +7,8 @@ import android.os.RemoteException;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 
+import com.demo.ipc.AsyncCallback;
 import com.demo.ipc.Book;
-import com.demo.ipc.IBookService;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * @author Sergey Rodionov
  */
-public class BookService extends Service {
+public class AsyncBookService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -30,24 +30,25 @@ public class BookService extends Service {
         return new BookServiceStub(this);
     }
 
-    private static class BookServiceStub extends IBookService.Stub {
+    private static class BookServiceStub extends com.demo.ipc.AsyncBookService.Stub {
 
-        private final WeakReference<BookService> mBookService;
+        private final WeakReference<AsyncBookService> mBookService;
         private final List<Book> mBooks;
 
-        private BookServiceStub(BookService bookService) {
+        private BookServiceStub(AsyncBookService bookService) {
             mBookService = new WeakReference<>(bookService);
             mBooks = new ArrayList<>();
         }
 
         @Override
-        public List<Book> loadBooks() throws RemoteException {
-            return generateBooks();
+        public void loadBooks(AsyncCallback callback) throws RemoteException {
+            SystemClock.sleep(5000);
+            callback.handleResult(generateBooks());
         }
 
         @Override
         public void finish() throws RemoteException {
-            BookService bookService = mBookService.get();
+            AsyncBookService bookService = mBookService.get();
             if (bookService != null) {
                 bookService.stopSelf();
             }

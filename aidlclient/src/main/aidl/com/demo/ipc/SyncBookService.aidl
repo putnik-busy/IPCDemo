@@ -1,7 +1,7 @@
 package com.demo.ipc;
 import com.demo.ipc.Book;
 
-interface IBookService {
+interface SyncBookService {
       List<Book> loadBooks();
 
       void finish();

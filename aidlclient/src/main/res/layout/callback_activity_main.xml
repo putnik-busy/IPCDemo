@@ -25,12 +25,14 @@
             android:padding="@dimen/horizontal_margin_16dp"
             android:text="@string/stop_load_book"/>
 
-        <Button
-            android:id="@+id/async_load_book"
-            android:layout_width="match_parent"
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:id="@+id/content_progress_bar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/horizontal_margin_16dp"
-            android:text="@string/async_load_book"/>
+            style="?android:attr/progressBarStyle"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/horizontal_margin_16dp"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/book_text_view"
