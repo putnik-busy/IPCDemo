@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(CallbackMainActivity.newIntent(this));
     }
 
+    private void messengerStartLoadingBooks() {
+        startActivity(MessengerActivity.newIntent(this));
+    }
+
     private void attemptToBindService() {
         Intent serviceIntent = new Intent()
                 .setComponent(new ComponentName("com.demo.aidlserver",
@@ -57,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
         Button startLoadBookButton = findViewById(R.id.start_load_book_button);
         Button stopLoadBookButton = findViewById(R.id.stop_load_book_button);
         Button asyncLoadBookButton = findViewById(R.id.async_load_book);
+        Button messengerLoadBookButton = findViewById(R.id.messenger_load_book);
         asyncLoadBookButton.setOnClickListener(view -> asyncStartLoadingBooks());
+        messengerLoadBookButton.setOnClickListener(view -> messengerStartLoadingBooks());
         startLoadBookButton.setOnClickListener(view -> startLoadingBooks());
         stopLoadBookButton.setOnClickListener(view -> stopLoadingBooks());
     }

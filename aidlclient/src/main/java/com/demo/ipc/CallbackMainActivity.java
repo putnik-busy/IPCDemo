@@ -131,20 +131,17 @@ public class CallbackMainActivity extends AppCompatActivity {
 
         @Override
         public void handleResult(List<Book> books) throws RemoteException {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    StringBuilder builder = new StringBuilder();
-                    builder.append("result download: ").append(books.size()).append(" books \n");
+            runOnUiThread(() -> {
+                StringBuilder builder = new StringBuilder();
+                builder.append("result download: ").append(books.size()).append(" books \n");
 
-                    for (int i = 0; i < books.size(); i++) {
-                        Book book = books.get(i);
-                        builder.append(formatBookInfo(book.getAuthor(), book.getRates()));
-                    }
-
-                    mBookTextView.append(builder.toString());
-                    mServiceConnection.finish();
+                for (int i = 0; i < books.size(); i++) {
+                    Book book = books.get(i);
+                    builder.append(formatBookInfo(book.getAuthor(), book.getRates()));
                 }
+
+                mBookTextView.append(builder.toString());
+                mServiceConnection.finish();
             });
 
         }

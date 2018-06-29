@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 
 import com.demo.ipc.Book;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,18 +24,10 @@ public class SyncBookService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return new BookServiceStub(this);
+        return new BookServiceStub();
     }
 
-    private static class BookServiceStub extends com.demo.ipc.SyncBookService.Stub {
-
-        private final WeakReference<SyncBookService> mBookService;
-        private final List<Book> mBooks;
-
-        private BookServiceStub(SyncBookService bookService) {
-            mBookService = new WeakReference<>(bookService);
-            mBooks = new ArrayList<>();
-        }
+    private class BookServiceStub extends com.demo.ipc.SyncBookService.Stub {
 
         @Override
         public List<Book> loadBooks() throws RemoteException {
@@ -45,20 +36,18 @@ public class SyncBookService extends Service {
 
         @Override
         public void finish() throws RemoteException {
-            SyncBookService bookService = mBookService.get();
-            if (bookService != null) {
-                bookService.stopSelf();
-            }
+            stopSelf();
         }
 
         private List<Book> generateBooks() {
-            mBooks.add(createBook("Пушкин А.С.", 5.0f));
-            mBooks.add(createBook("Тютчев Ф.И.", 4.9f));
-            mBooks.add(createBook("Достоевский Ф.М.", 4.8f));
-            return mBooks;
+            List<Book> books = new ArrayList<>();
+            books.add(fillDataBook("Пушкин А.С.", 5.0f));
+            books.add(fillDataBook("Тютчев Ф.И.", 4.9f));
+            books.add(fillDataBook("Достоевский Ф.М.", 4.8f));
+            return books;
         }
 
-        private Book createBook(String author, float rate) {
+        private Book fillDataBook(String author, float rate) {
             Book book = new Book();
             book.setAuthor(author);
             book.setRates(rate);

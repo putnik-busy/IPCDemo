@@ -3,4 +3,7 @@
     <string name="start_load_book">start_load_book</string>
     <string name="stop_load_book">stop_load_book</string>
     <string name="async_load_book">async_load_book</string>
+    <string name="messenger_load_book">messenger_load_book</string>
+    <string name="message_connected">connected start</string>
+    <string name="message_connected_lose">connected lose</string>
 </resources>
